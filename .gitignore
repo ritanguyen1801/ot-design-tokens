@@ -1,0 +1,22 @@
+# Ignore everything in the home directory by default...
+/*
+/.*
+
+# ...except our design system project files
+!.gitignore
+!.storybook/
+!stories/
+!package.json
+!package-lock.json
+!FileAttachment.jsx
+!file-attachment-preview.html
+!node_modules/
+
+# Always ignore node_modules
+node_modules/
+
+# Storybook build output
+storybook-static/
+
+# macOS
+.DS_Store

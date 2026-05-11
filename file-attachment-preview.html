@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FileAttachment Variants</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      padding: 40px 48px 60px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #050505;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 40px;
+    }
+
+    /* ── Grid of cards ──────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 520px);
+      gap: 40px 56px;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #374151;
+      margin-bottom: 3px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    /* ── Base file row ──────────────────────────────────────── */
+    .file-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #e6e7e7;
+      background: #f5f6f6;
+      width: 520px;
+      font-family: 'Outfit', sans-serif;
+      position: relative;
+    }
+
+    .file-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .file-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .file-ext {
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 5px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .file-body {
+      flex: 1 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .file-name {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #050505;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .file-meta {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      color: #aeb2b0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .action-btn svg {
+      width: 20px;
+      height: 20px;
+      color: #6b7280;
+    }
+
+    /* ── Variant overrides ──────────────────────────────────── */
+
+    /* Hover */
+    .variant-hover {
+      background: #eef0f0;
+      border-color: #c4c9c7;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+
+    /* Error */
+    .variant-error {
+      background: #fff5f5;
+      border-color: #fc8181;
+    }
+    .variant-error .file-name { color: #C53030; }
+    .variant-error .file-meta { color: #fc8181; }
+
+    /* Disabled */
+    .variant-disabled {
+      background: #fafafa;
+      opacity: 0.55;
+    }
+    .variant-disabled .file-name { color: #aeb2b0; }
+
+    /* Progress bar (uploading) */
+    .progress-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: #e6e7e7;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: #00A790;
+    }
+    .progress-label {
+      font-size: 12px;
+      color: #aeb2b0;
+      line-height: 16px;
+    }
+    .cancel-link {
+      font-size: 12px;
+      color: #aeb2b0;
+      flex-shrink: 0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>FileAttachment — Variants</h1>
+  <p class="subtitle">All visual states of the file attachment row component.</p>
+
+  <div class="grid">
+
+    <!-- 1. Default -->
+    <div>
+      <div class="card-label">Default</div>
+      <div class="card-desc">Standard uploaded file</div>
+      <div class="file-row">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#1D6F42">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#1D6F42">xlsx</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Report_Q4_2025.xlsx</span>
+          <span class="file-meta">Uploaded 02 Nov 2025</span>
+        </div>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. Hover -->
+    <div>
+      <div class="card-label">Hover</div>
+      <div class="card-desc">Cursor over the row</div>
+      <div class="file-row variant-hover">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#1D6F42">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#1D6F42">xlsx</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Report_Q4_2025.xlsx</span>
+          <span class="file-meta">Uploaded 02 Nov 2025</span>
+        </div>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. Uploading -->
+    <div>
+      <div class="card-label">Uploading</div>
+      <div class="card-desc">File transfer in progress</div>
+      <div class="file-row">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2C7A7B">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#2C7A7B">csv</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Large_Dataset.csv</span>
+          <div class="progress-wrap">
+            <div class="progress-track"><div class="progress-fill" style="width:62%"></div></div>
+            <span class="progress-label">Uploading… 62%</span>
+          </div>
+        </div>
+        <span class="cancel-link">Cancel</span>
+      </div>
+    </div>
+
+    <!-- 4. Error -->
+    <div>
+      <div class="card-label">Error</div>
+      <div class="card-desc">Upload failed or file is invalid</div>
+      <div class="file-row variant-error">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#E53E3E">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#E53E3E">pdf</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Corrupted_file.pdf</span>
+          <span class="file-meta">Upload failed — please try again</span>
+        </div>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#E53E3E">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 5. Disabled -->
+    <div>
+      <div class="card-label">Disabled</div>
+      <div class="card-desc">Read-only, no interactions</div>
+      <div class="file-row variant-disabled">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#aeb2b0">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#aeb2b0">docx</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name" style="color:#aeb2b0">Locked_document.docx</span>
+          <span class="file-meta">Uploaded 15 Jan 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Download action -->
+    <div>
+      <div class="card-label">Download action</div>
+      <div class="card-desc">Download instead of delete</div>
+      <div class="file-row">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#E53E3E">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#E53E3E">pdf</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Invoice_March.pdf</span>
+          <span class="file-meta">Uploaded 01 Mar 2025</span>
+        </div>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 7. Image file type -->
+    <div>
+      <div class="card-label">Image file</div>
+      <div class="card-desc">PNG / JPG — purple accent</div>
+      <div class="file-row">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#805AD5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#805AD5">png</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Screenshot.png</span>
+          <span class="file-meta">Uploaded 10 Apr 2025</span>
+        </div>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 8. Word document -->
+    <div>
+      <div class="card-label">Word document</div>
+      <div class="card-desc">DOCX — blue accent</div>
+      <div class="file-row">
+        <div class="file-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color:#2B6CB0">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="file-ext" style="color:#2B6CB0">docx</span>
+        </div>
+        <div class="file-body">
+          <span class="file-name">Project_Brief.docx</span>
+          <span class="file-meta">Uploaded 22 Feb 2025</span>
+        </div>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

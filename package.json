@@ -1,0 +1,28 @@
+{
+  "name": "design-system",
+  "version": "1.0.0",
+  "description": "Design system components",
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "deploy": "storybook build && gh-pages -d storybook-static"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "gh-pages": "^6.3.0",
+    "storybook": "^8.6.12",
+    "vite": "^6.3.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
