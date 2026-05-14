@@ -15,8 +15,5 @@
 # Always ignore node_modules
 node_modules/
 
-# Storybook build output
-storybook-static/
-
 # macOS
 .DS_Store

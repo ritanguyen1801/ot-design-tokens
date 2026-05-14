@@ -9,6 +9,10 @@ const config = {
     name: "@storybook/react-vite",
     options: {},
   },
+  viteFinal: (config) => {
+    config.base = "/ot-design-tokens/";
+    return config;
+  },
 };
 
 export default config;
